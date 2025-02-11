@@ -11,7 +11,7 @@ export default function TestList() {
   useEffect(() => {
     async function fetchTests() {
       try {
-        const response = await axios.get("http://localhost:3000/admin/courses/api/tests");
+        const response = await axios.get("http://localhost:3000/api/tests");
         setTests(response.data.tests);
       } catch (error) {
         console.error("Error fetching tests:", error);
@@ -32,7 +32,7 @@ export default function TestList() {
           <li
             key={test.id}
             className="p-4 bg-gray-800 rounded-lg mb-4 cursor-pointer hover:bg-gray-700"
-            onClick={() => router.push(`http://localhost:3000/home/test/${test.id}`)}
+            onClick={() => router.push(`/home/test/${test.id}`)}
           >
             {test.title}
           </li>

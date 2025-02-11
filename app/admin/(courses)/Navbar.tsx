@@ -25,16 +25,16 @@ export default function Navbar() {
       {/* Center Navigation */}
       <div className="flex items-center space-x-6 bg-black/20 px-6 py-2 rounded-full shadow-sm shadow-blue-400/20 hover:shadow-blue-500/40 transition-all duration-300">
         <Button variant="ghost" className="text-white rounded-full hover:bg-black/30">
-          <Link href="/admin/courses/allcourses">Courses</Link>
+          <Link href="/admin/allcourses">Courses</Link>
         </Button>
         <Button variant="ghost" className="text-white rounded-full hover:bg-black/30">
-          <Link href="/admin/courses/create">Add Course</Link>
+          <Link href="/admin/create">Add Course</Link>
         </Button>
         <Button variant="ghost" className="text-white rounded-full hover:bg-black/30">
-          <Link href="/admin/courses/test/createtest">Add Test</Link>
+          <Link href="/admin/test/createtest">Add Test</Link>
         </Button>
         <Button variant="ghost" className="text-white rounded-full hover:bg-black/30">
-          <Link href="/admin/courses/attendance">Mark attendance</Link>
+          <Link href="/admin/attendance">Mark attendance</Link>
         </Button>
         
         {/* Logout Button */}

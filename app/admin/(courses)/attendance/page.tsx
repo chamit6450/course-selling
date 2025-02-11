@@ -10,7 +10,7 @@ export default function AttendancePage() {
   useEffect(() => {
     async function fetchStudents() {
       try {
-        const response = await axios.get("http://localhost:3000/auth/api/login");
+        const response = await axios.get("http://localhost:3000/api/login");
         if (response.data.success) {
           setStudents(response.data.users);
           // Initialize attendance state with false (absent)

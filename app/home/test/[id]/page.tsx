@@ -12,7 +12,7 @@ export default function TestDetails() {
   useEffect(() => {
     async function fetchTest() {
       try {
-        const response = await axios.get(`/admin/courses/api/tests/${id}`);
+        const response = await axios.get(`http://localhost:3000/api/tests/${id}`);
         setTest(response.data.test);
       } catch (error) {
         console.error("Error fetching test:", error);

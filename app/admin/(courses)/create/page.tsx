@@ -26,7 +26,7 @@ export default function Page() {
     setSuccess(null);
 
     try {
-      const response = await axios.post("http://localhost:3000/admin/courses/api", {
+      const response = await axios.post("/api/courses", {
         courseName: coursename,
         description,
         content,
@@ -35,7 +35,7 @@ export default function Page() {
       setSuccess("Course created successfully!");
       setCoursename("");
       setDescription("");
-      setContent(""); // ✅ Reset the content field after submission
+      setContent(""); 
     } catch (err: any) {
       setError(err.response ? err.response.data.error : "An error occurred");
     } finally {

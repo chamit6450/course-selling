@@ -26,7 +26,7 @@ export default function Signup() {
     }
 
     try {
-      const response = await axios.post("http://localhost:3000/auth/api/signup", formData);
+      const response = await axios.post("/api/signup", formData);
       setMessage("✅ Signup successful! Redirecting...");
       
       setTimeout(() => {

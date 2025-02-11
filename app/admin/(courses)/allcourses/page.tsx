@@ -50,7 +50,7 @@ export default function CoursePage() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get("http://localhost:3000/admin/courses/api");
+        const response = await axios.get("http://localhost:3000/api/courses/");
         console.log("API Response:", response.data);
 
         setCourses(Array.isArray(response.data.courses) ? response.data.courses : []);
