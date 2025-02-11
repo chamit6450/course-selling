@@ -37,23 +37,19 @@ export default function Navbar() {
           <Link href="/admin/attendance">Mark attendance</Link>
         </Button>
         
+      </div>
         {/* Logout Button */}
         <Button
           variant="ghost"
-          className="text-white rounded-full hover:bg-black/30"
+          className="bg-black/20 text-white px-6 py-2 rounded-full hover:bg-black/30 shadow-sm shadow-blue-400/20 hover:shadow-blue-500/40 transition-all duration-300"
+       
           onClick={handleLogout}
         >
           Logout
         </Button>
-      </div>
 
-      {/* Right User Mode Button */}
-      <Button
-        variant="ghost"
-        className="bg-black/20 text-white px-6 py-2 rounded-full hover:bg-black/30 shadow-sm shadow-blue-400/20 hover:shadow-blue-500/40 transition-all duration-300"
-      >
-        Log out
-      </Button>
+     
+    
     </nav>
   );
 }

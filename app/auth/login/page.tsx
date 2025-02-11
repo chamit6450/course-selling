@@ -33,7 +33,7 @@ export default function Login() {
       <Card className="w-full max-w-md bg-gray-900 p-6 rounded-xl shadow-lg">
         <CardHeader>
         <CardTitle className="text-center text-white text-3xl font-bold">
-            Welcome to <span className="text-blue-500">100xDevs</span>
+            Welcome to <span className="text-blue-500">SkillX</span>
           </CardTitle>
           <p className="text-center text-gray-400">Login to access your courses</p>
         </CardHeader>
