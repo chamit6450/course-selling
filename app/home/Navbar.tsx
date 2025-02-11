@@ -13,7 +13,7 @@ export default function Navbar() {
     sessionStorage.removeItem("user"); // Replace with your actual session data if necessary
 
     // Redirect user to the login page or home page after logout
-    router.push("auth/login"); // Adjust path to your actual login route
+    router.push("http://localhost:3000/auth/login"); // Adjust path to your actual login route
   };
 
   return (
