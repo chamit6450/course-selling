@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import CourseCard from "./../../components/CourseCard";
 import { Skeleton } from "@/components/ui/skeleton"
+import { usePathname } from "next/navigation";
 
 export default function CoursePage() {
+  const pathname = usePathname()
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -12,8 +14,7 @@ export default function CoursePage() {
     async function fetchData() {
       try {
         const response = await axios.get("http://localhost:3000/admin/courses/api");
-        // D:\Cohort 3\course\app\admin\courses\api\route.ts
-        console.log("API Response:", response.data);
+        // console.log("API Response:", response.data);
         setCourses(response.data.courses || []);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -48,6 +49,7 @@ export default function CoursePage() {
 
   return (
     <div className="p-6">
+      {pathname}
       <h1 className="text-2xl font-bold text-white mb-4">My Courses</h1>
 
       {courses.length > 0 ? (

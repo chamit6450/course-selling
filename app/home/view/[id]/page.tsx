@@ -1,11 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import axios from "axios";
 import { Skeleton } from "@/components/ui/skeleton"
 
+
 export default function CourseDetails() {
-  const { id } = useParams(); // ✅ Get course ID from URL
+  const { id } = useParams(); 
+  const pathname = usePathname();
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -44,6 +46,7 @@ export default function CourseDetails() {
 
   return (
     <div className="p-6">
+      {pathname}
       <h1 className="text-3xl font-bold text-white">{course.coursename}</h1>
       <p className="text-gray-400 mt-2">{course.description}</p>
       <h2 className="text-2xl text-white mt-4">Course Content:</h2>
