@@ -2,22 +2,39 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+// Define a type for a student
+interface Student {
+  id: string;
+  name: string;
+}
+
+// Define a type for the attendance state
+type AttendanceState = Record<string, boolean>;
+
 export default function AttendancePage() {
-  const [students, setStudents] = useState([]);
-  const [attendance, setAttendance] = useState({});
-  const [loading, setLoading] = useState(true);
+  const [students, setStudents] = useState<Student[]>([]);
+  const [attendance, setAttendance] = useState<AttendanceState>({});
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     async function fetchStudents() {
       try {
-        const response = await axios.get("http://localhost:3000/api/login");
+        const response = await axios.get<{ success: boolean; users: Student[] }>(
+          "http://localhost:3000/api/login"
+        );
+
         if (response.data.success) {
           setStudents(response.data.users);
-          // Initialize attendance state with false (absent)
-          const initialAttendance = response.data.users.reduce((acc, student) => {
-            acc[student.id] = false;
-            return acc;
-          }, {});
+
+          // Initialize attendance state with all students marked as absent
+          const initialAttendance: AttendanceState = response.data.users.reduce(
+            (acc, student) => {
+              acc[student.id] = false;
+              return acc;
+            },
+            {} as AttendanceState
+          );
+
           setAttendance(initialAttendance);
         }
       } catch (error) {
@@ -30,7 +47,7 @@ export default function AttendancePage() {
     fetchStudents();
   }, []);
 
-  const toggleAttendance = (id) => {
+  const toggleAttendance = (id: string) => {
     setAttendance((prev) => ({
       ...prev,
       [id]: !prev[id], // Toggle attendance
