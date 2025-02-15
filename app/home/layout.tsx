@@ -1,11 +1,16 @@
+import { ReactNode } from "react";
 import Breadcrumb from "../components/BreadCrumb";
 import NavbarLayout from "./Navbar";
 
-export default function AdminLayout({ children }) {
+interface AdminLayoutProps {
+  children: ReactNode;
+}
+
+export default function AdminLayout({ children }: AdminLayoutProps) {
   return (
     <div>
-      <NavbarLayout /> 
-      {children}
+      <NavbarLayout />
+      <main>{children}</main>
     </div>
   );
 }

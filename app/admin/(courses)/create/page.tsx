@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -8,12 +8,12 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
 export default function Page() {
-  const [coursename, setCoursename] = useState("");
-  const [description, setDescription] = useState("");
-  const [content, setContent] = useState(""); // ✅ Fixed: Added state for content
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
+  const [coursename, setCoursename] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [content, setContent] = useState<string>(""); 
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
 
   async function postData() {
     if (!coursename || !description || !content) {
@@ -36,12 +36,28 @@ export default function Page() {
       setCoursename("");
       setDescription("");
       setContent(""); 
-    } catch (err: any) {
-      setError(err.response ? err.response.data.error : "An error occurred");
+    } catch (err) {
+      if (axios.isAxiosError(err) && err.response) {
+        setError(err.response.data.error || "An error occurred");
+      } else {
+        setError("An error occurred");
+      }
     } finally {
       setLoading(false);
     }
   }
+
+  // ✅ Handle alerts outside JSX using useEffect
+  useEffect(() => {
+    if (error) {
+      alert(error);
+      setError(null); // Reset error after showing alert
+    }
+    if (success) {
+      alert(success);
+      setSuccess(null); // Reset success after showing alert
+    }
+  }, [error, success]);
 
   return (
     <div className="flex mt-16 justify-center">
@@ -64,6 +80,7 @@ export default function Page() {
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="description">Description</Label>
               <Textarea
+                id="description"
                 placeholder="Brief Description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -72,6 +89,7 @@ export default function Page() {
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="content">Content</Label>
               <Textarea
+                id="content"
                 placeholder="Detailed Course Content"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
@@ -84,11 +102,7 @@ export default function Page() {
             {loading ? "Posting..." : "Post"}
           </Button>
         </CardFooter>
-      {/* ✅ Success/Error Messages */}
-      {error && alert("course not added")}
-      {success && alert("Course added successfully")}
       </Card>
-
     </div>
   );
 }

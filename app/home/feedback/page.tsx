@@ -1,16 +1,23 @@
 "use client";
-import { useState } from "react";
+
+import { useState, FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
-export default function FeedbackForm() {
-  const [formData, setFormData] = useState({ name: "", email: "", feedback: "" });
-  const [message, setMessage] = useState("");
+interface FormData {
+  name: string;
+  email: string;
+  feedback: string;
+}
 
-  async function handleSubmit(e) {
+export default function FeedbackForm() {
+  const [formData, setFormData] = useState<FormData>({ name: "", email: "", feedback: "" });
+  const [message, setMessage] = useState<string>("");
+
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    
+
     if (!formData.name || !formData.email || !formData.feedback) {
       setMessage("❌ Please fill out all fields");
       return;
@@ -29,7 +36,7 @@ export default function FeedbackForm() {
 
   return (
     <div className="min-h-screen flex pt-24 justify-center rounded-xl bg-gray-900 text-white px-6">
-      <div className="w-full h-1/2 max-w-lg bg-gray-800 p-6 rounded-xl shadow-lg ">
+      <div className="w-full h-1/2 max-w-lg bg-gray-800 p-6 rounded-xl shadow-lg">
         <h2 className="text-2xl font-bold text-center mb-4">Feedback Form</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input
@@ -51,7 +58,7 @@ export default function FeedbackForm() {
           <Textarea
             placeholder="Your Feedback"
             className="bg-gray-700 text-white border-gray-600"
-            rows="4"
+            rows={4} 
             value={formData.feedback}
             onChange={(e) => setFormData({ ...formData, feedback: e.target.value })}
             required

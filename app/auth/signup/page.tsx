@@ -17,7 +17,7 @@ export default function Signup() {
   });
   const [message, setMessage] = useState("");
 
-  async function handleSignup(e) {
+  async function handleSignup(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
@@ -32,8 +32,12 @@ export default function Signup() {
       setTimeout(() => {
         router.push("/home/view");
       }, 1500);
-    } catch (error) {
-      setMessage(error.response?.data?.error || "Signup failed");
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        setMessage(error.response?.data?.error || "Signup failed");
+      } else {
+        setMessage("An unexpected error occurred.");
+      }
     }
   }
 

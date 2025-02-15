@@ -1,9 +1,14 @@
+import { ReactNode } from "react";
 import NavbarLayout from "./Navbar";
 
-export default function AdminLayout({ children }) {
+interface AdminLayoutProps {
+  children: ReactNode;
+}
+
+export default function AdminLayout({ children }: AdminLayoutProps) {
   return (
     <div>
-      <NavbarLayout /> 
+      <NavbarLayout />
       {children}
     </div>
   );
