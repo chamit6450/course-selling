@@ -1,10 +1,10 @@
-import { NextResponse, NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export async function GET(request: NextRequest,response: NextResponse, context: { params: { id?: string } }) {
-  const id = context.params?.id;
+export async function GET(request: Request, { params }: { params: { id?: string } }) {
+  const id = params.id;
 
   if (!id) {
     return NextResponse.json({ success: false, message: "Test ID is required" }, { status: 400 });
@@ -12,7 +12,7 @@ export async function GET(request: NextRequest,response: NextResponse, context: 
 
   try {
     const test = await prisma.test.findUnique({
-      where: { id: id },
+      where: { id },
       include: { questions: true },
     });
 
