@@ -2,23 +2,31 @@
 import { useState } from "react";
 import axios from "axios";
 
+interface Question {
+  text: string;
+  options: string[];
+  answer: string;
+}
+
 export default function AdminPanel() {
-  const [title, setTitle] = useState("");
-  const [questions, setQuestions] = useState([{ text: "", options: ["", "", "", ""], answer: "" }]);
-  const [loading, setLoading] = useState(false);
+  const [title, setTitle] = useState<string>("");
+  const [questions, setQuestions] = useState<Question[]>([
+    { text: "", options: ["", "", "", ""], answer: "" },
+  ]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   function addQuestion() {
     setQuestions([...questions, { text: "", options: ["", "", "", ""], answer: "" }]);
   }
 
-  function updateQuestion(index, field, value) {
-    const updatedQuestions = [...questions];
-    if (field === "options") {
-      updatedQuestions[index].options = value;
-    } else {
-      updatedQuestions[index][field] = value;
-    }
-    setQuestions(updatedQuestions);
+  function updateQuestion<K extends keyof Question>(
+    index: number,
+    field: K,
+    value: Question[K]
+  ) {
+    setQuestions((prev) =>
+      prev.map((q, i) => (i === index ? { ...q, [field]: value } : q))
+    );
   }
 
   async function createTest() {
@@ -42,7 +50,6 @@ export default function AdminPanel() {
     <div className="min-h-screen text-black bg-gray-100 flex flex-col items-center justify-center py-12">
       <div className="bg-white text-black rounded-lg shadow-2xl p-8 w-full max-w-3xl">
         <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">Create a New Test</h1>
-
         <div className="mb-6">
           <label htmlFor="title" className="block text-lg font-medium text-gray-600 mb-2">
             Test Title
@@ -60,7 +67,6 @@ export default function AdminPanel() {
         {questions.map((q, idx) => (
           <div key={idx} className="mb-6 p-6 border border-gray-200 rounded-lg shadow-sm bg-gray-50">
             <h2 className="text-2xl font-semibold mb-4 text-gray-700">Question {idx + 1}</h2>
-
             <div className="mb-4">
               <label htmlFor={`question-${idx}`} className="block text-md font-medium text-gray-600 mb-2">
                 Question Text
