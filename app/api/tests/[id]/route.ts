@@ -3,8 +3,8 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export async function GET(request: NextRequest,response: NextResponse, { params }: { params: { id?: string } }) {
-  const id = params.id;
+export async function GET(req: NextRequest, res:NextResponse, context: { params: { id: string } }) {
+  const id = context.params.id;
 
   if (!id) {
     return NextResponse.json({ success: false, message: "Test ID is required" }, { status: 400 });
