@@ -3,10 +3,10 @@ import type { NextRequest } from "next/server";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
-
-export async function GET(req: NextRequest, res:NextResponse, context: { params: { id: string } }) {
+export async function GET(req: NextRequest, res:NextResponse, { params }: { params: { id: string } }) {
+// export async function GET(req: NextRequest, res:NextResponse, { params: { id: string } }) {
     try {
-        const { id } = context.params; 
+        const id  = params.id; 
         
         const course = await prisma.course.findUnique({
             where: { id },
