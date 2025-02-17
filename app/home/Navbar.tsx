@@ -13,7 +13,7 @@ export default function Navbar() {
     sessionStorage.removeItem("user"); // Replace with your actual session data if necessary
 
     // Redirect user to the login page or home page after logout
-    router.push("http://localhost:3000/auth/login"); // Adjust path to your actual login route
+    router.push("https://course-selling-q13g.vercel.app/auth/login"); // Adjust path to your actual login route
   };
 
   return (
@@ -24,16 +24,16 @@ export default function Navbar() {
       {/* Center Navigation */}
       <div className="flex items-center space-x-6 bg-black/20 px-6 py-2 rounded-full shadow-sm shadow-blue-400/20 hover:shadow-blue-500/40 transition-all duration-300">
         <Button variant="ghost" className="text-white rounded-full hover:bg-black/30">
-          <Link href="/home">Home</Link>
+          <Link href="https://course-selling-q13g.vercel.app/home">Home</Link>
         </Button>
         <Button variant="ghost" className="text-white rounded-full hover:bg-black/30">
-          <Link href="/home/view">Courses</Link>
+          <Link href="https://course-selling-q13g.vercel.app/home/view">Courses</Link>
         </Button>
         <Button variant="ghost" className="text-white rounded-full hover:bg-black/30">
-          <Link href="/home/test">Tests</Link>
+          <Link href="https://course-selling-q13g.vercel.app/home/test">Tests</Link>
         </Button>
         <Button variant="ghost" className="text-white rounded-full hover:bg-black/30">
-          <Link href="/home/feedback">Feedback</Link>
+          <Link href="https://course-selling-q13g.vercel.app/home/feedback">Feedback</Link>
         </Button>
       </div>
 

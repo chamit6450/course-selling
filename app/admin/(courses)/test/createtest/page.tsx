@@ -34,7 +34,7 @@ export default function AdminPanel() {
 
     setLoading(true);
     try {
-      await axios.post("http://localhost:3000/api/tests", { title, questions });
+      await axios.post("https://course-selling-q13g.vercel.app/api/tests", { title, questions });
       alert("Test created successfully!");
       setTitle("");
       setQuestions([{ text: "", options: ["", "", "", ""], answer: "" }]);

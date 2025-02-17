@@ -20,7 +20,7 @@ export default function AttendancePage() {
     async function fetchStudents() {
       try {
         const response = await axios.get<{ success: boolean; users: Student[] }>(
-          "http://localhost:3000/api/login"
+          "https://course-selling-q13g.vercel.app/api/login"
         );
 
         if (response.data.success) {

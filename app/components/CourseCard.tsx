@@ -13,7 +13,7 @@ export default function CourseCard({ id, title, description }: CourseCardProps) 
   return (
     <Card
       className="relative bg-gray-900 border border-gray-700 text-white rounded-lg shadow-md overflow-hidden rounded-xl cursor-pointer hover:shadow-xl transition-transform transform hover:scale-105"
-      onClick={() => router.push(`http://localhost:3000/home/view/${id}`)}
+      onClick={() => router.push(`https://course-selling-q13g.vercel.app/home/view/${id}`)}
     >
       <CardContent className="p-5 flex flex-col items-center">
         <div className="w-full h-40 bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center rounded-xl hover:from-purple-400 hover:to-blue-400">
