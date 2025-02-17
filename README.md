@@ -37,7 +37,7 @@ Ensure you have the following installed:
 1. Clone the repository:
    ```sh
    git clone https://github.com/amitxdev/course-selling.git
-   cd course-test-platform
+   cd course-selling
    ```
 2. Install dependencies:
    ```sh
