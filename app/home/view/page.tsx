@@ -21,7 +21,7 @@ export default function CoursePage() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get<{ courses: Course[] }>("http://localhost:3000/api/courses");
+        const response = await axios.get<{ courses: Course[] }>("https://course-selling-q13g.vercel.app/api/courses");
         setCourses(response.data.courses || []);
       } catch (error) {
         console.error("Error fetching data:", error);

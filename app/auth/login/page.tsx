@@ -71,7 +71,7 @@ export default function Login() {
             <p className="mt-2 text-center text-green-400 font-medium">{message}</p>
           )}
           <p className="text-center text-gray-400 text-sm mt-3">
-            Don't have an account? <a href="http://localhost:3000/auth/signup" className="text-blue-400 hover:text-blue-500">Sign up here</a>
+            Don't have an account? <a href="/auth/signup" className="text-blue-400 hover:text-blue-500">Sign up here</a>
           </p>
         </CardContent>
       </Card>

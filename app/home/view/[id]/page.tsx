@@ -20,7 +20,7 @@ export default function CourseDetails() {
   useEffect(() => {
     async function fetchCourse() {
       try {
-        const response = await axios.get(`http://localhost:3000/api/courses/${id}`);
+        const response = await axios.get(`https://course-selling-q13g.vercel.app/api/courses/${id}`);
         setCourse(response.data.course);
       } catch (err) {
         console.error("Error fetching course:", err);

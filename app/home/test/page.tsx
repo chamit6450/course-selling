@@ -18,7 +18,7 @@ export default function TestList() {
   useEffect(() => {
     async function fetchTests() {
       try {
-        const response = await axios.get<{ success: boolean; tests: Test[] }>("http://localhost:3000/api/tests");
+        const response = await axios.get<{ success: boolean; tests: Test[] }>("https://course-selling-q13g.vercel.app/api/tests");
         if (response.data.success) {
           setTests(response.data.tests);
         } else {

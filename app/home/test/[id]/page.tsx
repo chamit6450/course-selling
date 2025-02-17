@@ -26,7 +26,7 @@ export default function TestDetails() {
   useEffect(() => {
     async function fetchTest() {
       try {
-        const response = await axios.get<{ success: boolean; test: Test }>(`http://localhost:3000/api/tests/${id}`);
+        const response = await axios.get<{ success: boolean; test: Test }>(`https://course-selling-q13g.vercel.app/api/tests/${id}`);
         if (response.data.success) {
           setTest(response.data.test);
         } else {
